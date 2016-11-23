@@ -1,0 +1,23 @@
+{
+  "name": "polymer2",
+  "authors": [
+    "Bob Bijvoet <bob@frontmen.nl>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "2.0-preview",
+    "redux": "https://cdnjs.cloudflare.com/ajax/libs/redux/3.6.0/redux.min.js",
+    "redux-thunk": "https://cdnjs.cloudflare.com/ajax/libs/redux-thunk/2.1.0/redux-thunk.min.js"
+  }
+}

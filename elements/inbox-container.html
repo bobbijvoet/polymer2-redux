@@ -1,0 +1,61 @@
+<link rel="import" href="/bower_components/polymer/polymer-element.html">
+
+
+<dom-module id="inbox-container">
+    <template>
+        <inbox-list
+                items="[[inboxItems]]">
+        </inbox-list>
+
+        <button on-click="addItem">Add 1</button>
+    </template>
+    <script>
+        class inboxContainer extends Polymer.Element {
+
+            static get is() {
+                return 'inbox-container';
+            }
+
+            static get config() {
+                return {
+                    properties: {
+                        prop: {
+                            value: 'inboxItems',
+                            type: Array
+                        }
+                    }
+                }
+            }
+
+            ready() {
+                super.ready();
+                this.inboxItems = (store.getState().cartReducer.items);
+                this.unsubscribe = store.subscribe(() => {
+                        this.inboxItems = (store.getState().cartReducer.items)
+                        console.log(store.getState());
+                    }
+                )
+            }
+
+            addItem() {
+                store.dispatch({
+                    type: 'ADD_ITEM',
+                    item: {
+                        id: 1,
+                        subject: 'Build my first Redux app',
+                        body: 'testing'
+                    }
+                })
+            }
+
+            disconnectedCallback(){
+                super.disconnectedCallback();
+                this.unsubscribe();
+            }
+
+        }
+        customElements.define(inboxContainer.is, inboxContainer);
+
+    </script>
+</dom-module>
+

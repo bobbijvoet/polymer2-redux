@@ -1,0 +1,60 @@
+<link rel="import" href="/bower_components/polymer/polymer-element.html">
+
+
+<dom-module id="inbox-item">
+    <template>
+        <style>
+            .message {
+                display: flex;
+                flex-direction: row;
+                margin: 8px 0;
+            }
+
+            .avatar {
+                display: block;
+                width: 64px;
+                height: 64px;
+                background-color: grey;
+                margin-right: 8px;
+            }
+
+            .summary h2 {
+                margin: 0;
+            }
+
+            .summary p {
+                margin: 0;
+            }
+
+        </style>
+
+        <div class="message">
+            <div class="avatar"></div>
+            <div class="summary">
+                <h2>[[item.subject]]</h2>
+                <p>[[item.body]]</p>
+            </div>
+        </div>
+    </template>
+    <script>
+        class inboxItem extends Polymer.Element {
+
+            static get is() {
+                return 'inbox-item';
+            }
+
+            static get config() {
+                return {
+                    properties: {
+                        item: {
+                            type: Object
+                        }
+                    }
+                }
+            }
+        }
+        customElements.define(inboxItem.is, inboxItem);
+
+    </script>
+</dom-module>
+
