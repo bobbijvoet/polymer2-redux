@@ -6,8 +6,12 @@
         <style>
             .message {
                 display: flex;
-                flex-direction: row;
                 margin: 8px 0;
+                width: 320px;
+            }
+
+            .message:hover {
+                background-color: lightgrey;
             }
 
             .avatar {
@@ -16,14 +20,34 @@
                 height: 64px;
                 background-color: grey;
                 margin-right: 8px;
+                flex: 0 0 64px;
             }
+
+            .summary {
+                flex-grow: 1;
+                min-width: 0;
+
+            }
+
 
             .summary h2 {
                 margin: 0;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
             }
 
             .summary p {
                 margin: 0;
+            }
+            .new {
+                align-self: center;
+                background:lightskyblue;
+                padding:5px;
+                border-radius: 20px;
+                color: white;
+                margin-right:8px;
+
             }
 
         </style>
@@ -31,9 +55,12 @@
         <div class="message">
             <div class="avatar"></div>
             <div class="summary">
+
                 <h2>[[item.subject]]</h2>
                 <p>[[item.body]]</p>
             </div>
+            <span class="new">new</span>
+
         </div>
     </template>
     <script>

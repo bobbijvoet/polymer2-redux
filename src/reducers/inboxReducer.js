@@ -4,7 +4,7 @@ const initialState = {
         body: 'Message 1',
         read: false
     }],
-    totalItems: 0
+    totalItems: 1
 };
 
 function cartReducer(state, action) {
@@ -15,9 +15,11 @@ function cartReducer(state, action) {
     switch (action.type) {
         case 'ADD_ITEM':
             action.item.read = false;
+            const items = [...state.items, action.item];
+
             return Object.assign({}, state, {
-                items: [...state.items, action.item],
-                totalItems: state.totalItems + 1,
+                items,
+                totalItems: items.length,
             });
 
         default:

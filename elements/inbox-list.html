@@ -9,6 +9,7 @@
                 <inbox-item item="[[item]]"></inbox-item>
             </template>
         </dom-repeat>
+        <p>Total items: [[items.length]]</p>
     </template>
     <script>
         class inboxList extends Polymer.Element {
@@ -25,6 +26,20 @@
                         }
                     }
                 }
+            }
+
+            ready() {
+                super.ready();
+                this.totalItems = (store.getState().cartReducer.totalItems);
+                this.unsubscribe = store.subscribe(() => {
+                        this.totalItems = (store.getState().cartReducer.totalItems)
+                    }
+                )
+            }
+
+            disconnectedCallback() {
+                super.disconnectedCallback();
+                this.unsubscribe();
             }
         }
         customElements.define(inboxList.is, inboxList);
