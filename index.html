@@ -7,12 +7,36 @@
     <link rel="import" href="elements/inbox-container.html">
     <link rel="import" href="elements/inbox-list.html">
     <link rel="import" href="elements/inbox-item.html">
+    <link rel="import" href="elements/message-view.html">
 
     <script src="/bower_components/redux/index.js"></script>
     <script src="/src/reducers/inboxReducer.js"></script>
     <script src="/src/store/createStore.js"></script>
+    <link rel="import" href="/bower_components/polymer/src/styling/custom-style.html">
+
+    <style>
+
+        body {
+            display: flex;
+        }
+
+        inbox-container {
+            /*flex: 0 0 360px;*/
+            width: 360px;
+        }
+
+        message-container {
+            /*flex: 1;/*/
+            border-left: 1px dashed darkgray;
+        }
+    </style>
 </head>
 <body>
+
+
 <inbox-container></inbox-container>
+<message-view>
+    this is the message text
+</message-view>
 </body>
 </html>

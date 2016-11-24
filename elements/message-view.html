@@ -1,0 +1,48 @@
+<link rel="import" href="/bower_components/polymer/polymer-element.html">
+<link rel="import" href="shared-styles.html">
+
+
+<dom-module id="message-view">
+    <template>
+
+        asfasfasf
+        <h1>[[message.subject]]</h1>
+        <p>[[message.body]]</p>
+    </template>
+    <script>
+        class messageView extends Polymer.Element {
+
+            static get is() {
+                return 'message-view';
+            }
+
+            static get config() {
+                return {
+                    properties: {
+                        message: {
+                            value: 'inboxItems',
+                            type: Array
+                        }
+                    }
+                }
+            }
+
+            ready() {
+                super.ready();
+                this.unsubscribe = store.subscribe(() => {
+                    this.message = (store.getState().cartReducer.items[store.getState().cartReducer.selected - 1]);
+                    }
+                )
+            }
+
+            disconnectedCallback(){
+                super.disconnectedCallback();
+                this.unsubscribe();
+            }
+
+        }
+        customElements.define(messageView.is, messageView);
+
+    </script>
+</dom-module>
+

@@ -6,7 +6,7 @@
     <template>
         <dom-repeat items="[[items]]">
             <template>
-                <inbox-item item="[[item]]"></inbox-item>
+                <inbox-item item="[[item]]" on-select-message="onMessage"></inbox-item>
             </template>
         </dom-repeat>
         <p>Total items: [[items.length]]</p>
@@ -28,19 +28,10 @@
                 }
             }
 
-            ready() {
-                super.ready();
-                this.totalItems = (store.getState().cartReducer.totalItems);
-                this.unsubscribe = store.subscribe(() => {
-                        this.totalItems = (store.getState().cartReducer.totalItems)
-                    }
-                )
+            onMessage(e) {
+                this.dispatchEvent(new CustomEvent('select-message', {detail:e.detail}), {bubbles: true})
             }
 
-            disconnectedCallback() {
-                super.disconnectedCallback();
-                this.unsubscribe();
-            }
         }
         customElements.define(inboxList.is, inboxList);
 

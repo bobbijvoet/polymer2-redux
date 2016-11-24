@@ -1,0 +1,79 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/polymer/src/styling/custom-style.html">
+
+
+<!-- shared styles for all views -->
+<dom-module id="shared-styles">
+    <template>
+        <custom-style>
+            <style>
+
+                :root {
+                    --app-primary-color: #81b599;
+                    --app-secondary-color: #212121;
+
+                    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+                }
+
+                paper-material {
+                    border-radius: 2px;
+                    background-color: #fff;
+                    padding: 16px;
+
+                    max-width: 640px;
+
+                }
+
+                paper-button {
+                    background: #FFF;
+                    color: var(--app-primary-color);
+                    font-family: 'Baron Neue';
+
+                }
+
+                a {
+                    color: var(--app-primary-color);
+                }
+
+                h1 {
+                    font-size: 28px;
+                    margin: 16px 0;
+                    font-family: 'Baron Neue';
+                    color: var(--app-secondary-color);
+                    text-transform: uppercase;
+
+                }
+
+                h2 {
+                    font-size: 22px;
+                    margin: 16px 0;
+                    font-family: 'Baron Neue';
+                    text-transform: uppercase;
+
+                    color: var(--app-secondary-color);
+
+                }
+
+                h3 {
+                    margin: 15px 0;
+                    font-family: 'Baron Neue';
+                    /*text-transform: uppercase;*/
+
+                    color: var(--app-secondary-color);
+
+                    font-size: 16px;
+                }
+
+                paper-card {
+                    --paper-card-header: {
+                        font-family: 'Baron Neue';
+                    };
+
+                    max-width: 640px;
+                }
+
+
+            </style>
+        </custom-style>
+    </template>
+</dom-module>

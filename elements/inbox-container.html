@@ -3,7 +3,7 @@
 
 <dom-module id="inbox-container">
     <template>
-        <inbox-list
+        <inbox-list id="list" on-select-message="openItem"
                 items="[[inboxItems]]">
         </inbox-list>
 
@@ -35,15 +35,29 @@
                         console.log(store.getState());
                     }
                 )
+                console.log(this);
+//                window.addEventListener('message', () => {
+//                    console.log('open');
+//                }, true)
             }
 
             addItem() {
                 store.dispatch({
                     type: 'ADD_ITEM',
                     item: {
-                        id: 1,
+                        id: 0,
                         subject: 'Build my first Redux app',
                         body: 'testing'
+                    }
+                })
+            }
+            openItem(e) {
+                console.log(e);
+                store.dispatch({
+                    type: 'OPEN_ITEM',
+                    item: {
+                        id: e.detail.id
+
                     }
                 })
             }
