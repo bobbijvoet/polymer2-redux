@@ -1,0 +1,29 @@
+{
+  "name": "polymer2-redux",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "chai": "^3.5.0"
+  },
+  "devDependencies": {
+    "mocha": "^3.2.0"
+  },
+  "scripts": {
+    "start": "browser-sync start -s -f \"./src\" -b \"Google Chrome Canary\"",
+    "test": "browser-sync start -s -f \"./test\"  --startPath \"test/index.html\" -b \"Google Chrome Canary\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bobbijvoet/polymer2-redux.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bobbijvoet/polymer2-redux/issues"
+  },
+  "homepage": "https://github.com/bobbijvoet/polymer2-redux#readme"
+}

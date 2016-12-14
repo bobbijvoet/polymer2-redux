@@ -1,0 +1,34 @@
+<link rel="import" href="/bower_components/polymer/polymer-element.html">
+<link rel="import" href="/bower_components/polymer/src/templatizer/dom-repeat.html">
+
+
+<dom-module id="inbox-list">
+  <template>
+    <dom-repeat items="[[items]]">
+      <template>
+        <inbox-item item="[[item]]"></inbox-item>
+      </template>
+    </dom-repeat>
+  </template>
+  <script>
+    class inboxList extends Polymer.Element {
+
+      static get is() {
+        return 'inbox-list';
+      }
+
+      static get config() {
+        return {
+          properties: {
+            items: {
+              type: Array
+            }
+          }
+        }
+      }
+    }
+    customElements.define(inboxList.is, inboxList);
+
+  </script>
+</dom-module>
+

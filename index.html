@@ -1,42 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="import" href="bower_components/polymer/polymer-element.html">
-    <link rel="import" href="elements/inbox-container.html">
-    <link rel="import" href="elements/inbox-list.html">
-    <link rel="import" href="elements/inbox-item.html">
-    <link rel="import" href="elements/message-view.html">
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="import" href="bower_components/polymer/polymer-element.html">
+  <link rel="import" href="/src/elements/status-container.html">
+  <link rel="import" href="/src/elements/inbox-container.html">
+  <link rel="import" href="/src/elements/inbox-list.html">
+  <link rel="import" href="/src/elements/inbox-item.html">
+  <link rel="import" href="/src/elements/inbox-message.html">
 
-    <script src="/bower_components/redux/index.js"></script>
-    <script src="/src/reducers/inboxReducer.js"></script>
-    <script src="/src/store/createStore.js"></script>
-    <link rel="import" href="/bower_components/polymer/src/styling/custom-style.html">
+  <script src="/bower_components/redux/index.js"></script>
+  <script src="/bower_components/redux-thunk/index.js"></script>
+  <script src="/bower_components/lodash/dist/lodash.js"></script>
+  <script src="/src/reducers/inboxReducer.js"></script>
+  <script src="/src/actions/inboxActions.js"></script>
+  <script src="/src/store/createStore.js"></script>
+  <link rel="import" href="/bower_components/polymer/src/styling/custom-style.html">
 
-    <style>
+  <style>
 
-        body {
-            display: flex;
-        }
-
-        inbox-container {
-            /*flex: 0 0 360px;*/
-            width: 360px;
-        }
-
-        message-container {
-            /*flex: 1;/*/
-            border-left: 1px dashed darkgray;
-        }
-    </style>
+    * {
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+  </style>
 </head>
 <body>
 
-
 <inbox-container></inbox-container>
-<message-view>
-    this is the message text
-</message-view>
+<status-container></status-container>
+
+
+<script id="__bs_script__">//<![CDATA[
+document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.18.5'><\/script>".replace("HOST", location.hostname));
+//]]></script>
+
 </body>
 </html>

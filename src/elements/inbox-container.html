@@ -1,0 +1,89 @@
+<link rel="import" href="/bower_components/polymer/polymer-element.html">
+
+
+<dom-module id="inbox-container">
+  <template>
+    <style>
+
+      main {
+        display: flex;
+      }
+
+      small {
+        font-size: 16px;
+      }
+
+      inbox-list {
+        flex: 0 0 400px;
+      }
+
+      inbox-message {
+        padding-left: 8px;
+        border-left: 1px dashed darkgray;
+      }
+    </style>
+
+    <h1>Inbox
+    </h1>
+
+    <main>
+      <inbox-list
+        on-select-message="openItem"
+        items="[[inboxItems]]">
+      </inbox-list>
+      <inbox-message
+        message="[[message]]"
+        on-delete-message="deleteItem">
+      </inbox-message>
+    </main>
+
+  </template>
+  <script>
+    class inboxContainer extends Polymer.Element {
+
+      static get is() {
+        return 'inbox-container';
+      }
+
+      static get config() {
+        return {
+          properties: {
+            prop: {
+              value: 'inboxItems',
+              type: Array
+            }
+          }
+        }
+      }
+
+      ready() {
+        super.ready();
+        this.unsubscribe = store.subscribe(() => {
+            this.inboxItems = store.getState().inboxReducer.items;
+            this.message = store.getState().inboxReducer.selectedMessage;
+            this.totalNew = store.getState().inboxReducer.totalNew;
+          }
+        );
+
+        inboxActions.fetchMessages()
+      }
+
+      openItem(e) {
+        inboxActions.openMessage(e.detail.id)
+      }
+
+      deleteItem(e) {
+        inboxActions.deleteMessage(e.detail.id)
+      }
+
+      disconnectedCallback() {
+        super.disconnectedCallback();
+        this.unsubscribe();
+      }
+
+    }
+    customElements.define(inboxContainer.is, inboxContainer);
+
+  </script>
+</dom-module>
+

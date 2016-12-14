@@ -1,0 +1,49 @@
+<link rel="import" href="/bower_components/polymer/polymer-element.html">
+
+
+<dom-module id="inbox-message">
+  <template>
+    <h1>[[message.subject]]</h1>
+    <p>[[message.body]]</p>
+
+    <dom-if if="[[message]]">
+      <template>
+        <button on-click="deleteMessage">
+          delete
+        </button>
+
+      </template>
+    </dom-if>
+
+  </template>
+  <script>
+    class inboxMessage extends Polymer.Element {
+
+      static get is() {
+        return 'inbox-message';
+      }
+
+      static get config() {
+        return {
+          properties: {
+            message: {
+              type: Object
+            }
+          }
+        }
+      }
+
+      deleteMessage() {
+        this.dispatchEvent(new CustomEvent('delete-message', {
+          detail: {id: this.message.id},
+          bubbles: true,
+          composed: true
+        }));
+      }
+
+    }
+    customElements.define(inboxMessage.is, inboxMessage);
+
+  </script>
+</dom-module>
+

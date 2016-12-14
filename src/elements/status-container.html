@@ -1,0 +1,38 @@
+<link rel="import" href="/bower_components/polymer/polymer-element.html">
+
+
+<dom-module id="status-container">
+  <template>
+    <span>Logged in.
+      <small>([[total]] messages)</small>
+      <small>([[totalNew]] new messages)</small>
+    </span>
+  </template>
+  <script>
+    class statusContainer extends Polymer.Element {
+
+      static get is() {
+        return 'status-container';
+      }
+
+      ready() {
+        super.ready();
+        this.unsubscribe = store.subscribe(() => {
+            this.totalNew = store.getState().inboxReducer.totalNew;
+            this.total = store.getState().inboxReducer.items.length;
+          }
+        );
+
+      }
+
+      disconnectedCallback() {
+        super.disconnectedCallback();
+        this.unsubscribe();
+      }
+
+    }
+    customElements.define(statusContainer.is, statusContainer);
+
+  </script>
+</dom-module>
+
