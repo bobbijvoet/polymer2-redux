@@ -62,7 +62,7 @@ describe('Inbox Reducer', function () {
         }
       });
       state = inboxReducer(state, {
-        type: 'SET_MESSAGE_UNREAD',
+        type: 'UNREAD_MESSAGE',
         item: {
           id: 1
         }
