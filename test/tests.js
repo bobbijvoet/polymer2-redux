@@ -50,7 +50,6 @@ describe('Inbox Reducer', function () {
           id: 1
         }
       });
-      console.log(state.items);
       expect(state.items.length).to.equal(0);
     });
 

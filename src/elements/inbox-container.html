@@ -46,7 +46,6 @@
         this.unsubscribe = store.subscribe(() => {
             this.inboxItems = store.getState().inboxReducer.items;
             this.message = store.getState().inboxReducer.selectedMessage;
-            this.totalUnread = store.getState().inboxReducer.totalUnread;
           }
         );
 
