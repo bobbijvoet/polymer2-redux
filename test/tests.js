@@ -34,7 +34,6 @@ describe('Inbox Reducer', function () {
     });
 
     it('should select an item', () => {
-
       state = inboxReducer(state, {
         type: 'OPEN_MESSAGE',
         item: {
@@ -44,13 +43,14 @@ describe('Inbox Reducer', function () {
       expect(state.selectedMessage.id).to.equal(1);
     });
 
-    it('should remove an item', () => {
+    it('should delete an item', () => {
       state = inboxReducer(state, {
-        type: 'REMOVE_MESSAGE',
+        type: 'DELETE_MESSAGE',
         item: {
           id: 1
         }
       });
+      console.log(state.items);
       expect(state.items.length).to.equal(0);
     });
 

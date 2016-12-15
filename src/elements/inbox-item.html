@@ -16,7 +16,7 @@
         background-color: lightgrey;
       }
 
-      .avatar {
+      .selected {
         display: block;
         width: 4px;
         height: 64px;
@@ -54,11 +54,13 @@
     </style>
 
     <div id="message" class="message" on-click="selectMessage">
+
       <dom-if if="[[item.selected]]">
         <template>
-          <div class="avatar"></div>
+          <div class="selected"></div>
         </template>
       </dom-if>
+
       <div class="summary">
         <h2>[[item.subject]]</h2>
         <p>[[item.body]]</p>

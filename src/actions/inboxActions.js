@@ -33,15 +33,5 @@ class inboxActions {
       }
     })
   }
-
-  static setUnread(id) {
-    store.dispatch({
-      type: 'SET_MESSAGE_UNREAD',
-      item: {
-        id
-      }
-    })
-
-  }
 }
 

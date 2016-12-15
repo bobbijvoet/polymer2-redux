@@ -55,6 +55,8 @@ function inboxReducer(state, action) {
       );
 
     case 'DELETE_MESSAGE':
+      console.log(state);
+
       return Object.assign({}, state, {
         items: state.items.filter(item => {
           return item.id !== action.item.id;

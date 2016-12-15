@@ -23,10 +23,14 @@
 
       ready() {
         super.ready();
+
+        //Subcribe to the loading state
         this.unsubscribe = store.subscribe(() => {
             this.loading = store.getState().inboxReducer.loading;
           }
         );
+
+        //Fetch the messages
         inboxActions.fetchMessages();
 
       }
