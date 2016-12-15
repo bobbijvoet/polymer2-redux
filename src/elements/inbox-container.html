@@ -5,7 +5,7 @@
   <template>
     <style>
 
-      main {
+      :host {
         display: flex;
       }
 
@@ -23,19 +23,14 @@
       }
     </style>
 
-    <h1>Inbox
-    </h1>
-
-    <main>
-      <inbox-list
-        on-select-message="openItem"
-        items="[[inboxItems]]">
-      </inbox-list>
-      <inbox-message
-        message="[[message]]"
-        on-delete-message="deleteItem">
-      </inbox-message>
-    </main>
+    <inbox-list
+      on-select-message="openMessage"
+      items="[[inboxItems]]">
+    </inbox-list>
+    <inbox-message
+      message="[[message]]"
+      on-delete-message="deleteMessage">
+    </inbox-message>
 
   </template>
   <script>
@@ -45,34 +40,24 @@
         return 'inbox-container';
       }
 
-      static get config() {
-        return {
-          properties: {
-            prop: {
-              value: 'inboxItems',
-              type: Array
-            }
-          }
-        }
-      }
 
       ready() {
         super.ready();
         this.unsubscribe = store.subscribe(() => {
             this.inboxItems = store.getState().inboxReducer.items;
             this.message = store.getState().inboxReducer.selectedMessage;
-            this.totalNew = store.getState().inboxReducer.totalNew;
+            this.totalUnread = store.getState().inboxReducer.totalUnread;
           }
         );
 
         inboxActions.fetchMessages()
       }
 
-      openItem(e) {
+      openMessage(e) {
         inboxActions.openMessage(e.detail.id)
       }
 
-      deleteItem(e) {
+      deleteMessage(e) {
         inboxActions.deleteMessage(e.detail.id)
       }
 

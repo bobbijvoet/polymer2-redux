@@ -9,45 +9,67 @@ describe('Inbox Reducer', function () {
   });
 
   it('should set the default state', () => {
-    expect(state.items.length).to.equal(4);
+    expect(state.items.length).to.equal(0);
   });
 
 
-  it('should select an item', () => {
+  it('should fetch items', () => {
     state = inboxReducer(state, {
-      type: 'OPEN_ITEM',
-      item: {
+      type: 'FETCH_MESSAGES_SUCCESS',
+      items: [{
         id: 1
-      }
+      }]
     });
-    expect(state.selectedMessage.id).to.equal(1);
-    expect(state.items[0].read).to.equal(true);
+    expect(state.items.length).to.equal(1);
   });
 
-  it('should remove an item', () => {
-    state = inboxReducer(state, {
-      type: 'REMOVE_ITEM',
-      item: {
-        id: 1
-      }
+  describe('has fetched items', () => {
+    beforeEach(() => {
+      state = inboxReducer(state, {
+        type: 'FETCH_MESSAGES_SUCCESS',
+        items: [{
+          id: 1
+        }]
+      });
     });
-    expect(state.items.length).to.equal(3);
-  });
 
-  it('should remove an item', () => {
-    state = inboxReducer(state, {
-      type: 'OPEN_ITEM',
-      item: {
-        id: 1
-      }
+    it('should select an item', () => {
+
+      state = inboxReducer(state, {
+        type: 'OPEN_MESSAGE',
+        item: {
+          id: 1
+        }
+      });
+      expect(state.selectedMessage.id).to.equal(1);
     });
-    state = inboxReducer(state, {
-      type: 'SET_ITEM_UNREAD',
-      item: {
-        id: 1
-      }
+
+    it('should remove an item', () => {
+      state = inboxReducer(state, {
+        type: 'REMOVE_MESSAGE',
+        item: {
+          id: 1
+        }
+      });
+      expect(state.items.length).to.equal(0);
     });
-    expect(state.items[0].read).to.equal(false);
-  });
+
+    it('should set unread for an item', () => {
+      state = inboxReducer(state, {
+        type: 'OPEN_MESSAGE',
+        item: {
+          id: 1
+        }
+      });
+      state = inboxReducer(state, {
+        type: 'SET_MESSAGE_UNREAD',
+        item: {
+          id: 1
+        }
+      });
+      expect(state.items[0].read).to.equal(false);
+    });
+  })
+
 
 });

@@ -1,6 +1,6 @@
 const initialState = {
   items: [],
-  totalNew: 4,
+  totalUnread: null,
   selectedMessage: null
 };
 
@@ -11,14 +11,26 @@ function inboxReducer(state, action) {
   }
 
   switch (action.type) {
-    case 'FETCH_ITEMS_SUCCESS':
+    case 'FETCH_MESSAGES_LOADING':
       return Object.assign({}, state,
         {
-          items: action.items
+          loading: true
         }
       );
 
-    case 'OPEN_ITEM':
+    case 'FETCH_MESSAGES_SUCCESS':
+      return Object.assign({}, state,
+        {
+          loading: false,
+          items: action.items,
+          totalUnread: action.items.reduce((prev, current) => {
+            return prev - current.read;
+          }, action.items.length)
+
+        }
+      );
+
+    case 'OPEN_MESSAGE':
       return Object.assign({}, state,
         {
           items: state.items.map(item => {
@@ -31,17 +43,18 @@ function inboxReducer(state, action) {
           }),
 
           selectedMessage: _.find(state.items, (item) => {
+            console.log(item.id, action.item.id);
             return item.id === action.item.id
           }),
 
-          totalNew: state.items.reduce((prev, current) => {
+          totalUnread: state.items.reduce((prev, current) => {
             return prev - current.read;
           }, state.items.length)
 
         }
       );
 
-    case 'REMOVE_ITEM':
+    case 'DELETE_MESSAGE':
       return Object.assign({}, state, {
         items: state.items.filter(item => {
           return item.id !== action.item.id;

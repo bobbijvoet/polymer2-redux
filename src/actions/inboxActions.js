@@ -1,31 +1,16 @@
 class inboxActions {
   static fetchMessages() {
     store.dispatch((dispatch) => {
-      return window.fetch('')
-        .then((data) => {
-          dispatch({
-            type: 'FETCH_ITEMS_SUCCESS',
-            items: [{
-              subject: 'PR from Alice',
-              body: 'There\'s a PR on your repo.',
-              read: false,
-              id: 1
-            }, {
-              subject: 'Your flight to Zanzibar',
-              body: 'Here\'s your ticket.',
-              read: false,
-              id: 2
-            }, {
-              subject: 'Meetup',
-              body: 'New meetup you might be interested in.',
-              read: false,
-              id: 3
-            }, {
-              subject: 'Drinks?',
-              body: 'Hey Bob, let\'s catch up.',
-              read: false,
-              id: 4
-            }]
+      dispatch({
+        type: 'FETCH_MESSAGES_LOADING'
+      });
+      return window.fetch('http://localhost:1337/messages')
+        .then((response) => {
+          response.json().then(data => {
+            dispatch({
+              type: 'FETCH_MESSAGES_SUCCESS',
+              items: data
+            })
           })
         });
     });
@@ -33,7 +18,7 @@ class inboxActions {
 
   static openMessage(id) {
     store.dispatch({
-      type: 'OPEN_ITEM',
+      type: 'OPEN_MESSAGE',
       item: {
         id
       }
@@ -42,11 +27,21 @@ class inboxActions {
 
   static deleteMessage(id) {
     store.dispatch({
-      type: 'REMOVE_ITEM',
+      type: 'DELETE_MESSAGE',
       item: {
         id
       }
     })
+  }
+
+  static setUnread(id) {
+    store.dispatch({
+      type: 'SET_MESSAGE_UNREAD',
+      item: {
+        id
+      }
+    })
+
   }
 }
 

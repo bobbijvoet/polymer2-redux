@@ -1,0 +1,28 @@
+{
+  "messages": [
+    {
+      "subject": "PR from Alice",
+      "body": "There's a PR on your repo.",
+      "read": false,
+      "id": 1
+    },
+    {
+      "subject": "Your flight to Zanzibar",
+      "body": "Here's your ticket.",
+      "read": true,
+      "id": 2
+    },
+    {
+      "subject": "Meetup",
+      "body": "New meetup you might be interested in.",
+      "read": false,
+      "id": 3
+    },
+    {
+      "subject": "Time for drinks?",
+      "body": "Hey Bob, let's catch up.",
+      "read": false,
+      "id": 4
+    }
+  ]
+}

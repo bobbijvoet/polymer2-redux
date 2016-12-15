@@ -19,6 +19,7 @@
     "polymer": "2.0-preview",
     "redux": "https://cdnjs.cloudflare.com/ajax/libs/redux/3.6.0/redux.min.js",
     "redux-thunk": "https://cdnjs.cloudflare.com/ajax/libs/redux-thunk/2.1.0/redux-thunk.min.js",
-    "lodash": "^4.17.2"
+    "lodash": "^4.17.2",
+    "sinon-server-1.17.6": "http://sinonjs.org/releases/sinon-server-1.17.6.js"
   }
 }

@@ -13,8 +13,7 @@
     "mocha": "^3.2.0"
   },
   "scripts": {
-    "start": "browser-sync start -s -f \"./src\" -b \"Google Chrome Canary\"",
-    "test": "browser-sync start -s -f \"./test\"  --startPath \"test/index.html\" -b \"Google Chrome Canary\""
+    "start": "concurrently --kill-others \"json-server -q mocks/messages.json -p 1337 -d 1400 \" \"browser-sync start -s -f \"./src\"\""
   },
   "repository": {
     "type": "git",

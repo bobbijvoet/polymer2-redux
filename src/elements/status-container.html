@@ -3,9 +3,10 @@
 
 <dom-module id="status-container">
   <template>
+    <h3>Status</h3>
     <span>Logged in.
       <small>([[total]] messages)</small>
-      <small>([[totalNew]] new messages)</small>
+      <small>([[totalUnread]] new messages)</small>
     </span>
   </template>
   <script>
@@ -18,7 +19,7 @@
       ready() {
         super.ready();
         this.unsubscribe = store.subscribe(() => {
-            this.totalNew = store.getState().inboxReducer.totalNew;
+            this.totalUnread = store.getState().inboxReducer.totalUnread;
             this.total = store.getState().inboxReducer.items.length;
           }
         );

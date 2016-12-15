@@ -1,0 +1,46 @@
+<link rel="import" href="/bower_components/polymer/polymer-element.html">
+
+
+<dom-module id="app-container">
+  <template>
+    <h1>Inbox</h1>
+    <dom-if if="[[loading]]">
+      <template>
+        Loading...
+      </template>
+    </dom-if>
+
+    <inbox-container></inbox-container>
+    <status-container></status-container>
+
+  </template>
+  <script>
+    class appContainer extends Polymer.Element {
+
+      static get is() {
+        return 'app-container';
+      }
+
+      ready() {
+        super.ready();
+        this.unsubscribe = store.subscribe(() => {
+            this.loading = store.getState().inboxReducer.loading;
+          }
+        );
+        inboxActions.fetchMessages();
+
+      }
+
+      disconnectedCallback() {
+        //Cleanup subscriptions
+        super.disconnectedCallback();
+        this.unsubscribe();
+      }
+
+
+    }
+    customElements.define(appContainer.is, appContainer);
+
+  </script>
+</dom-module>
+
